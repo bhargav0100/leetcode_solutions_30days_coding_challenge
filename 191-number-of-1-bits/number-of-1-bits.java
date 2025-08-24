@@ -3,8 +3,7 @@ class Solution {
         int count=0;
         while(n>0)
         {
-            int rem=n%2;
-            if(rem==1)
+            if(n%2==1)
             {
                 count++;
             }
