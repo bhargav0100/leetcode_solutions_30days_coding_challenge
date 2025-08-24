@@ -4,6 +4,7 @@ class Solution {
         Set<Integer>s=new HashSet();
         while(true)
         {
+            s.add(n);
             int num=0;
             while(n>0)
             {
@@ -20,7 +21,6 @@ class Solution {
             {
                 return false;
             }
-            s.add(n);
         }
     }
 }
