@@ -8,8 +8,7 @@ class Solution {
             int num=0;
             while(n>0)
             {
-                int rem=n%10;
-                num+=rem*rem;
+                num+=Math.pow(n%10,2);
                 n/=10;
             }
             n=num;
