@@ -20,6 +20,7 @@ class Solution {
                 else if(sum<0)
                 {
                     j++;
+                    if(nums[i]+nums[j]>0) break;
                     continue;
                 }
                 else
