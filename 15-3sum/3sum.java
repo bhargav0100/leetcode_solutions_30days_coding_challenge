@@ -5,25 +5,30 @@ class Solution {
         Set<List<Integer>>s=new HashSet();
         for(int i=0;i<nums.length-2;i++)
         {
-            int left=i+1;
-            int right=nums.length-1;
-            while(left<right)
+            if(i>0 && nums[i]==nums[i-1]) continue;
+            int j=i+1;
+            int k=nums.length-1;
+            while(j<k)
             {
-                int sum=nums[i]+nums[left]+nums[right];
-                if(sum==0)
+                int sum=nums[i]+nums[j]+nums[k];
+                if(sum>0)
                 {
-                    s.add(Arrays.asList(nums[i],nums[left],nums[right]));
-                    left++;
-                    right--;
+                    k--;
+                    continue;
                 }
-                else if(sum>0)
+                else if(sum<0)
                 {
-                    right--;
+                    j++;
+                    continue;
                 }
                 else
                 {
-                    left++;
+                    s.add(Arrays.asList(nums[i],nums[j],nums[k]));
                 }
+                j++;
+                k--;
+                while(j<k && nums[j]==nums[j-1]) j++;
+                while(j<k && nums[k]==nums[k+1]) k--;
             }
         }
         return new ArrayList(s);
