@@ -5,6 +5,7 @@ class Solution {
         Set<List<Integer>>s=new HashSet();
         for(int i=0;i<nums.length-2;i++)
         {
+            if(nums[i]>0) break;
             if(i>0 && nums[i]==nums[i-1]) continue;
             int j=i+1;
             int k=nums.length-1;
@@ -14,19 +15,21 @@ class Solution {
                 if(sum>0)
                 {
                     k--;
+                    continue;
                 }
                 else if(sum<0)
                 {
                     j++;
+                    continue;
                 }
                 else
                 {
                     s.add(Arrays.asList(nums[i],nums[j],nums[k]));
-                    j++;
-                    k--;
-                    while(j<k && nums[j]==nums[j-1]) j++;
-                    while(j<k && nums[k]==nums[k+1]) k--;
                 }
+                j++;
+                k--;
+                while(j<k && nums[j]==nums[j-1]) j++;
+                while(j<k && nums[k]==nums[k+1]) k--;
             }
         }
         return new ArrayList(s);
