@@ -1,6 +1,6 @@
 class Solution {
     public void sortColors(int[] nums) {
-        Map<Integer,Integer>m=new TreeMap();
+        Map<Integer,Integer>m=new HashMap();
         m.put(0,0);
         m.put(1,0);
         m.put(2,0);
