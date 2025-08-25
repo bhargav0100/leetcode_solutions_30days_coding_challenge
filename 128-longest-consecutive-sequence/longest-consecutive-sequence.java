@@ -2,7 +2,6 @@ class Solution {
     public int longestConsecutive(int[] nums) {
         if(nums.length<1) return 0;
         Arrays.sort(nums);
-        Set<Integer>s=new HashSet();
         int res=1;
         int count=1;
         int sum=nums[0];
