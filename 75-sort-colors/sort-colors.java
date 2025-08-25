@@ -1,26 +1,34 @@
 class Solution {
     public void sortColors(int[] nums) {
-        Map<Integer,Integer>m=new HashMap();
-        m.put(0,0);
-        m.put(1,0);
-        m.put(2,0);
-        for(int n:nums)
+        int start=0;
+        int mid=0;
+        int end=nums.length-1;
+        while(mid<=end)
         {
-            if(m.containsKey(n))
+            switch(nums[mid])
             {
-                int i=m.get(n);
-                m.put(n,i+1);
+                case 0:
+                {
+                    swap(nums,start,mid);
+                    start++;
+                    mid++;
+                }break;
+                case 1:
+                {
+                    mid++;
+                }break;
+                case 2:
+                {
+                    swap(nums,mid,end);
+                    end--;
+                }
             }
         }
-        int i=0;
-        int k=0;
-        while(i<3)
-        {
-            for(int j=0;j<m.get(i);j++)
-            {
-                nums[k++]=i;
-            }
-            i++;
-        }
+    }
+    private void swap(int []nums,int i,int j)
+    {
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
     }
 }
