@@ -5,7 +5,6 @@ class Solution {
         Set<List<Integer>>s=new HashSet();
         for(int i=0;i<nums.length-2;i++)
         {
-            if(nums[i]>0) return new ArrayList(s);
             int left=i+1;
             int right=nums.length-1;
             while(left<right)
