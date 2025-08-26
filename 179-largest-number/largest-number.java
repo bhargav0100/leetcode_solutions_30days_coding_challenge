@@ -12,11 +12,11 @@ class Solution {
             }
         });
         if(str[0].equals("0")) return "0";
-        String res="";
+        StringBuilder res=new StringBuilder();
         for(String s:str)
         {
-            res+=s;
+            res.append(s);
         }
-        return res;
+        return res.toString();
     }
 }
