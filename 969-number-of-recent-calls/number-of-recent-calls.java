@@ -5,9 +5,8 @@ class RecentCounter {
     }
     
     public int ping(int t) {
-        int time=t-3000;
         q.add(t);
-        while(time>q.peek())
+        while(t-3000>q.peek())
         {
             q.poll();
         }
