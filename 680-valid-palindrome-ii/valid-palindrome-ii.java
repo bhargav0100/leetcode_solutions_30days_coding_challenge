@@ -20,6 +20,11 @@ class Solution {
                     count++;
                     i++;
                 }
+                else if(s.charAt(i)==s.charAt(j-1) && count!=1)
+                {
+                    count++;
+                    j--;
+                }
                 else
                 {
                     return false;
@@ -41,6 +46,11 @@ class Solution {
                 {
                     count++;
                     j--;
+                }
+                else if(s.charAt(i+1)==s.charAt(j) && count!=1)
+                {
+                    count++;
+                    i++;
                 }
                 else
                 {
