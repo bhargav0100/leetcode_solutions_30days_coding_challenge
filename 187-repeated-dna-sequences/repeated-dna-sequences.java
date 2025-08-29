@@ -6,16 +6,17 @@ class Solution {
         set.add(s.substring(0,10));
         for(int i=1;i<s.length()-9;i++)
         {
-            if(set.contains(s.substring(i,i+10)))
+            String str=s.substring(i,i+10);
+            if(set.contains(str))
             {
-                if(!(l.contains(s.substring(i,i+10))))
+                if(!(l.contains(str)))
                 {
-                    l.add(s.substring(i,i+10));
+                    l.add(str);
                 }
             }
             else
             {
-                set.add(s.substring(i,i+10));
+                set.add(str);
             }
         }
         return l;
