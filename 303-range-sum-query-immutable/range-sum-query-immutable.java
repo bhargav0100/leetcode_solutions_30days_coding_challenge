@@ -6,7 +6,7 @@ class NumArray {
         {
             if(i==0)
             {
-                arr[0]=nums[0];
+                arr[i]=nums[i];
             }
             else
             {
