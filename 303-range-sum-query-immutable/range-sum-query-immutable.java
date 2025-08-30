@@ -5,10 +5,6 @@ class NumArray {
     }
     
     public int sumRange(int left, int right) {
-        if(left<0 || right>=nums.length)
-        {
-            throw new ArrayIndexOutOfBoundsException();
-        }
         int sum=0;
         for(int i=left;i<=right;i++)
         {
