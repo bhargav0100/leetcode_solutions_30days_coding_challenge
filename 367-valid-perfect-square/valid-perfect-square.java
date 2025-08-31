@@ -4,7 +4,7 @@ class Solution {
         long end=num;
         while(start<=end)
         {
-            long mid=start+(end-start)/2;
+            long mid=(start+end)/2;
             long square=mid*mid;
             if(square==num)
             {
