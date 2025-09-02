@@ -2,10 +2,10 @@ class Solution {
     public int shipWithinDays(int[] weights, int days) {
         int capacity=0;
         int sum=0;
-        for(int weight:weights)
+        for(int i=0;i<weights.length;i++)
         {
-            capacity=Math.max(capacity,weight);
-            sum+=weight;
+            capacity=Math.max(capacity,weights[i]);
+            sum+=weights[i];
         }
         while(capacity<=sum)
         {
@@ -26,16 +26,16 @@ class Solution {
     {
         int day=1;
         int sum=0;
-        for(int weight:weights)
+        for(int i=0;i<weights.length;i++)
         {
-            if(sum+weight>capacity)
+            if(sum+weights[i]>capacity)
             {
-                sum=weight;
+                sum=weights[i];
                 day++;
             }
             else
             {
-                sum+=weight;
+                sum+=weights[i];
             }
         }
         return day;
