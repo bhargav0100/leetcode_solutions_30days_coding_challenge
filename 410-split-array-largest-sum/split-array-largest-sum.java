@@ -4,7 +4,7 @@ class Solution {
         int sum=Arrays.stream(nums).sum();
         while(max<=sum)
         {
-            int mid=(max+sum)/2;
+            int mid=max+(sum-max)/2;
             int min=subArray(nums,mid);
             if(min>k)
             {
