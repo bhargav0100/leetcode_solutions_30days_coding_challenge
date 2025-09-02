@@ -1,7 +1,11 @@
 class Solution {
     public int splitArray(int[] nums, int k) {
-        int max=Arrays.stream(nums).max().getAsInt();
-        int sum=Arrays.stream(nums).sum();
+        int max=0;
+        int sum=0;
+        for(int num : nums){
+            max=Math.max(max,num);
+            sum+=num;
+        }
         while(max<=sum)
         {
             int mid=(max+sum)/2;
