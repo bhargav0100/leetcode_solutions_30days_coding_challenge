@@ -2,24 +2,28 @@ class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
          List<List<Integer>>permutations=new ArrayList();
          Arrays.sort(nums);
-         backTracking(permutations,new ArrayList(),nums,new int[nums.length]);
+         backTracking(permutations,nums,0,new HashSet());
          return permutations;
     }
-    private void backTracking(List<List<Integer>>permutations,List<Integer>temp,int[] nums,int[]used)
+    private void backTracking(List<List<Integer>>permutations,int[] nums,int start,Set<Integer>set)
     {
-        if(temp.size()==nums.length && !permutations.contains(temp))
+        if(start==nums.length-1)
         {
-            permutations.add(new ArrayList(temp));
-            return;
+            permutations.add(Arrays.stream(nums).boxed().collect(Collectors.toList()));
         }
-        for(int i=0;i<nums.length;i++)
+        for(int i=start;i<nums.length;i++)
         {
-            if(used[i]==1) continue;
-            used[i]=1;
-            temp.add(nums[i]);
-            backTracking(permutations,temp,nums,used);
-            used[i]=0;
-            temp.remove(temp.size()-1);
+            if(set.contains(nums[i])) continue;
+            set.add(nums[i]);
+            swap(nums,start,i);
+            backTracking(permutations,nums,start+1,new HashSet());
+            swap(nums,start,i);
         }
+    }
+    private void swap(int[] nums,int i,int j)
+    {
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
     }
 }
