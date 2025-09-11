@@ -25,6 +25,7 @@ class Solution {
             while(height>0)
             {
                 TreeNode node=q.poll();
+                if(node.left==null && node.right==null) return ++depth;
                 if(node.left!=null) 
                 {
                     q.add(node.left);
@@ -34,7 +35,6 @@ class Solution {
                     q.add(node.right);
                 }
                 height--;
-                if(node.left==null && node.right==null) return ++depth;
             }
             depth++;
         }
