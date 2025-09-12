@@ -15,7 +15,7 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        ArrayDeque<TreeNode> node=new ArrayDeque();
+        Queue<TreeNode> node=new LinkedList();
         
         if(root.left!=null) node.add(root.left);
         if(root.right!=null) node.add(root.right);
@@ -25,8 +25,8 @@ class Solution {
             if(length%2!=0) return false;
             while(length>0)
             {
-                TreeNode temp1=node.pollFirst();
-                TreeNode temp2=node.pollFirst();
+                TreeNode temp1=node.poll();
+                TreeNode temp2=node.poll();
                 if(temp1.val!=temp2.val) return false;
                 if(temp1.left!=null) node.add(temp1.left);
                 if(temp2.right!=null) node.add(temp2.right);
