@@ -25,8 +25,7 @@ class Solution {
             while(length>0)
             {
                 TreeNode node=q.poll();
-                int num=node.val;
-                if(num>=low && num<=high) sum+=num;
+                if(node.val>=low && node.val<=high) sum+=node.val;
                 if(node.left!=null) q.add(node.left);
                 if(node.right!=null) q.add(node.right);
                 length--;
