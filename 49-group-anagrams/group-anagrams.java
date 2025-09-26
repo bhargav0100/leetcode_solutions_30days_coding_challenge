@@ -1,4 +1,3 @@
-import java.util.Map.Entry;
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String,List<String>> map=new HashMap();
@@ -6,12 +5,7 @@ class Solution {
         {
             anagram(str,map);
         }
-        List<List<String>> list=new ArrayList();
-        for(Entry<String,List<String>> e:map.entrySet())
-        {
-            list.add(e.getValue());
-        }
-        return list;
+        return new ArrayList(map.values());
     }
     private void anagram(String str,Map<String,List<String>>map)
     {
