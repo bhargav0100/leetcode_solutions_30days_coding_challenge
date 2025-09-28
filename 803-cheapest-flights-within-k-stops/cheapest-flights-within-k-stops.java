@@ -1,62 +1,52 @@
-class Pair{
-    int first;
-    int second;
-    public Pair(int first,int second)
-    {
-        this.first=first;
-        this.second=second;
-    }
-}
-class Tuple{
-    int first;
-    int second;
-    int third;
-    public Tuple(int first,int second,int third){
-        this.first=first;
-        this.second=second;
-        this.third=third;
-    }
-}
 class Solution {
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
-        ArrayList<ArrayList<Pair>> adj=new ArrayList();
-        for(int i=0;i<n;i++)
+        List<List<List<Integer>>> pair=new ArrayList();
+        int[] min=new int[n];
+        for(int i=0;i<min.length;i++)
         {
-            adj.add(new ArrayList());
+            pair.add(new ArrayList());
+            min[i]=Integer.MAX_VALUE;
         }
-        int m=flights.length;
-        for(int i=0;i<m;i++)
+        for(int[] flight:flights)
         {
-            adj.get(flights[i][0]).add(new Pair(flights[i][1],flights[i][2]));
+            int i=flight[0];
+            
+            pair.get(i).add(Arrays.asList(flight[1],flight[2]));
+            
         }
-        Queue<Tuple> q=new LinkedList();
-        q.add(new Tuple(0,src,0));
-        int[] dist=new int[n];
-        for(int i=0;i<n;i++)
-        {
-            dist[i]=(int)(Integer.MAX_VALUE);
-        }
-        dist[src]=0;
+        Queue<List<Integer>> q=new LinkedList();
+        q.add(Arrays.asList(0,src,0));
         while(!q.isEmpty())
         {
-            Tuple it=q.peek();
-            q.remove();
-            int stops=it.first;
-            int node=it.second;
-            int cost=it.third;
-            if(stops>k) continue;
-            for(Pair iter:adj.get(node))
-            {
-                int adjNode=iter.first;
-                int edW=iter.second;
-                if(cost+edW<dist[adjNode] && stops<=k)
+            
+                int stops=q.peek().get(0);
+                if(stops>k) break;
+                int node=q.peek().get(1);
+                int cost=q.peek().get(2);
+                q.remove();
+                if(cost>=min[dst]) continue;
+                List<List<Integer>> temp=pair.get(node);
+                if(temp!=null)
                 {
-                    dist[adjNode]=cost+edW;
-                    q.add(new Tuple(stops+1,adjNode,cost+edW));
+                    for(List<Integer> t:temp)
+                    {
+                        int tnode=t.get(0);
+                        int tcost=t.get(1);
+                        if(min[tnode]>cost+tcost)
+                        {
+                            min[tnode]=Math.min(min[tnode],cost+tcost);
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                        if(min[dst]<=cost+tcost) continue;
+                        if(tnode==dst || pair.get(tnode)==null) continue;
+                        q.add(Arrays.asList(stops+1,tnode,tcost+cost));
+                    }
                 }
-            }
         }
-        if(dist[dst]==(int)(Integer.MAX_VALUE)) return -1;
-        return dist[dst];
+        if(min[dst]==Integer.MAX_VALUE) return -1;
+        return min[dst];
     }
 }
